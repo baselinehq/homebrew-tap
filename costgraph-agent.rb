@@ -10,10 +10,10 @@ class CostgraphAgent < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_darwin_amd64.tar.gz"
-      sha256 "eb16fbd7dbcf5ada52a7948183ec6e0f4517717cd8a897d25864ae7bc3a8b62a"
+      sha256 "f2321b91da86f8ce4af38e5af5721c191d636717382503689c14d98237f3a6b4"
 
       def install
-        bin.install "costgraph"
+        bin.install "costgraph-agent"
         if OS.mac?
           if Hardware::CPU.arm?
             lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
@@ -25,10 +25,10 @@ class CostgraphAgent < Formula
     end
     if Hardware::CPU.arm?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_darwin_arm64.tar.gz"
-      sha256 "c8990773b3311a7b0862526a7a9834e56a60dfcff941a8415deb58c1573dbd3f"
+      sha256 "67f4f7c5b0bafff3becf2e44025341bdf099e2c452c647e61e663a0bdd0b0e87"
 
       def install
-        bin.install "costgraph"
+        bin.install "costgraph-agent"
         if OS.mac?
           if Hardware::CPU.arm?
             lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
@@ -43,9 +43,9 @@ class CostgraphAgent < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_linux_amd64.tar.gz"
-      sha256 "2aeda4c8876df9e898b7ac68dae593b090981d71d28c18b6ff1e278634afef30"
+      sha256 "84b029efed09975dae0ae73aae68b2fddd142b504e9b324c386c13000297c43d"
       def install
-        bin.install "costgraph"
+        bin.install "costgraph-agent"
         if OS.mac?
           if Hardware::CPU.arm?
             lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
@@ -57,9 +57,9 @@ class CostgraphAgent < Formula
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_linux_arm64.tar.gz"
-      sha256 "bccb5c32f3dbca37d1ee257eb5a1a175962a6a0c67d4b70586b69f2f227dbc00"
+      sha256 "9934a098724a8c52e25b39e4fc535442180940e59aca5283abb536a983459348"
       def install
-        bin.install "costgraph"
+        bin.install "costgraph-agent"
         if OS.mac?
           if Hardware::CPU.arm?
             lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
