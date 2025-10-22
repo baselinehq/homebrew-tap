@@ -5,12 +5,12 @@
 class CostgraphAgent < Formula
   desc "VM agent for Costgraph"
   homepage "https://costgraph.baselinehq.cloud/"
-  version "0.0.22"
+  version "0.0.23"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.22/costgraph-agent_v0.0.22_darwin_amd64.tar.gz"
-      sha256 "4d4f66dc62bfb5bd72b49b3196261cd8e63f8fc865827df0ada87d842b955b20"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_darwin_amd64.tar.gz"
+      sha256 "eb16fbd7dbcf5ada52a7948183ec6e0f4517717cd8a897d25864ae7bc3a8b62a"
 
       def install
         bin.install "costgraph"
@@ -24,8 +24,8 @@ class CostgraphAgent < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.22/costgraph-agent_v0.0.22_darwin_arm64.tar.gz"
-      sha256 "b6ba09a2b48de64ed735a6b7dc828114aa0ca0582d265f9acabf7ebf5d73b603"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_darwin_arm64.tar.gz"
+      sha256 "c8990773b3311a7b0862526a7a9834e56a60dfcff941a8415deb58c1573dbd3f"
 
       def install
         bin.install "costgraph"
@@ -42,8 +42,8 @@ class CostgraphAgent < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.22/costgraph-agent_v0.0.22_linux_amd64.tar.gz"
-      sha256 "7aa5feb5321c9ea2d4dbe89f222fe6369293a2192a5f0356d675f0346f1a9df7"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_linux_amd64.tar.gz"
+      sha256 "2aeda4c8876df9e898b7ac68dae593b090981d71d28c18b6ff1e278634afef30"
       def install
         bin.install "costgraph"
         if OS.mac?
@@ -56,8 +56,8 @@ class CostgraphAgent < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.22/costgraph-agent_v0.0.22_linux_arm64.tar.gz"
-      sha256 "26f2fc8d99759ed43ae3629ecf9b42e6db0417de1b084c746e6f65144db09520"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.23/costgraph-agent_v0.0.23_linux_arm64.tar.gz"
+      sha256 "bccb5c32f3dbca37d1ee257eb5a1a175962a6a0c67d4b70586b69f2f227dbc00"
       def install
         bin.install "costgraph"
         if OS.mac?
