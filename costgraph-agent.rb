@@ -5,12 +5,12 @@
 class CostgraphAgent < Formula
   desc "VM agent for Costgraph"
   homepage "https://costgraph.baselinehq.cloud/"
-  version "0.0.26"
+  version "0.0.27"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.26/costgraph-agent_v0.0.26_darwin_amd64.tar.gz"
-      sha256 "7080073dc6717367b9e6857e003bdd44c5347ca3d2ab32a15c4300bb41f3ce97"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_darwin_amd64.tar.gz"
+      sha256 "a0f89d4bf52fe3281e5c8776e4e1ca446e7527b1040fc293a3e9ab6f01b179da"
 
       def install
         bin.install "costgraph-agent"
@@ -24,8 +24,8 @@ class CostgraphAgent < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.26/costgraph-agent_v0.0.26_darwin_arm64.tar.gz"
-      sha256 "564289470151674052c3b81345370249a806cc386ef6cfad4b639890715d2720"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_darwin_arm64.tar.gz"
+      sha256 "5a4768d1467310a4c5b582ff1875e34bdba8cde95a3896d75636cb8ef6615c64"
 
       def install
         bin.install "costgraph-agent"
@@ -42,8 +42,8 @@ class CostgraphAgent < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.26/costgraph-agent_v0.0.26_linux_amd64.tar.gz"
-      sha256 "69149c37aac79eacee9d80d4b6012e6531a00d912b38375ce7b04d66f1e58f2a"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_linux_amd64.tar.gz"
+      sha256 "cc035817abed375d9980f577bdfc918b6e1ca7feacf1c9999774dd3861638439"
       def install
         bin.install "costgraph-agent"
         if OS.mac?
@@ -56,8 +56,8 @@ class CostgraphAgent < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.26/costgraph-agent_v0.0.26_linux_arm64.tar.gz"
-      sha256 "58d8ec4c0d89082fbf003487ea17f5e246ec1d0393ef90f4af75c08801988846"
+      url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_linux_arm64.tar.gz"
+      sha256 "caa96c009ecba0bbdb2bb0f3ff12805bb96fc4e2965934eebfaf682da0ebc5b8"
       def install
         bin.install "costgraph-agent"
         if OS.mac?
@@ -69,5 +69,31 @@ class CostgraphAgent < Formula
         end
       end
     end
+  end
+
+  def post_install
+    etc.install "conf.yaml" => "costgraph_agent/config.yaml"
+  end
+
+  def caveats
+    <<~EOS
+      This formula requires additional configuration post-installation.
+
+      Update the configuration file at #{etc}/costgraph_agent/config.yaml. It requires an API key which you can obtain from the Costgraph UI.
+
+      To start the service, run `sudo brew services start #{fullname}`
+    EOS
+  end
+
+  service do
+    run: ["#{opt_bin}/costgraph-agent", "--config", "#{etc}/costgraph_agent/config.yaml"]
+    keep_alive: true
+    log_path: "#{var}/log/costgraph_agent.log"
+    error_log_path: "#{var}/log/costgraph_agent.error.log"
+    require_root: true
+  end
+
+  test do
+    assert_predicate("#{opt_bin}/costgraph-agent", :exist?)
   end
 end
