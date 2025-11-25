@@ -10,7 +10,7 @@ class CostgraphAgent < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_darwin_amd64.tar.gz"
-      sha256 "a0f89d4bf52fe3281e5c8776e4e1ca446e7527b1040fc293a3e9ab6f01b179da"
+      sha256 "6508eba198a32e15c78bcbbbb5ee6a22a1692bf73ce91e5f9b9b9b20410e66f4"
 
       def install
         bin.install "costgraph-agent"
@@ -25,7 +25,7 @@ class CostgraphAgent < Formula
     end
     if Hardware::CPU.arm?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_darwin_arm64.tar.gz"
-      sha256 "5a4768d1467310a4c5b582ff1875e34bdba8cde95a3896d75636cb8ef6615c64"
+      sha256 "3c0d654b2f4223b842eaf47378561b813f6889f5429f54559a3dd519d14aa62a"
 
       def install
         bin.install "costgraph-agent"
@@ -43,7 +43,7 @@ class CostgraphAgent < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_linux_amd64.tar.gz"
-      sha256 "cc035817abed375d9980f577bdfc918b6e1ca7feacf1c9999774dd3861638439"
+      sha256 "44b877c664216b93d5b290152e72ed8deaf491b36367bf2c04fa1ec782cd6537"
       def install
         bin.install "costgraph-agent"
         if OS.mac?
@@ -57,7 +57,7 @@ class CostgraphAgent < Formula
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://costgraph-agent-bin.s3.amazonaws.com/v0.0.27/costgraph-agent_v0.0.27_linux_arm64.tar.gz"
-      sha256 "caa96c009ecba0bbdb2bb0f3ff12805bb96fc4e2965934eebfaf682da0ebc5b8"
+      sha256 "ebdc36ae11495ffbaf395b67912fcace0e4f9849b0778879d34394a7fd127560"
       def install
         bin.install "costgraph-agent"
         if OS.mac?
@@ -86,11 +86,11 @@ class CostgraphAgent < Formula
   end
 
   service do
-    run: ["#{opt_bin}/costgraph-agent", "--config", "#{etc}/costgraph_agent/config.yaml"]
-    keep_alive: true
-    log_path: "#{var}/log/costgraph_agent.log"
-    error_log_path: "#{var}/log/costgraph_agent.error.log"
-    require_root: true
+    run ["#{opt_bin}/costgraph-agent", "--config", "#{etc}/costgraph_agent/config.yaml"]
+    keep_alive true
+    log_path "#{var}/log/costgraph_agent.log"
+    error_log_path "#{var}/log/costgraph_agent.error.log"
+    require_root true
   end
 
   test do
