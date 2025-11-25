@@ -81,7 +81,7 @@ class CostgraphAgent < Formula
 
       Update the configuration file at #{etc}/costgraph_agent/config.yaml. It requires an API key which you can obtain from the Costgraph UI.
 
-      To start the service, run `sudo brew services start #{fullname}`
+      To start the service, run `sudo brew services start baselinehq/tap/#{name}`
     EOS
   end
 
