@@ -5,11 +5,11 @@
 class Costgraph < Formula
   desc "Command line companion for CostGraph"
   homepage "https://costgraph.baselinehq.cloud/"
-  version "0.4.5"
+  version "0.5.0"
 
   on_macos do
-    url "https://setup.costgraph.ai/costgraph-cli/0.4.5/costgraph-cli_darwin_all.tar.gz"
-    sha256 "5ace2ff49525a5826d4f76a8de6edb1f3c9e42cc9c696abff2226cc45f657b02"
+    url "https://setup.costgraph.ai/costgraph-cli/0.5.0/costgraph-cli_darwin_all.tar.gz"
+    sha256 "2707b8b4930fb3d7485fcc7e89591a748f9397ac56229f7b8e19e8af70e49a85"
 
     define_method(:install) do
       bin.install "costgraph"
@@ -18,15 +18,15 @@ class Costgraph < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://setup.costgraph.ai/costgraph-cli/0.4.5/costgraph-cli_linux_amd64.tar.gz"
-      sha256 "4756df84252a0b09ac440b846c3780fa422901014a7fc3c8b054ef219031bc30"
+      url "https://setup.costgraph.ai/costgraph-cli/0.5.0/costgraph-cli_linux_amd64.tar.gz"
+      sha256 "97e9ca7dfdd2f8fad294cbec747146ec296f26b71b5f435ed13a18412c026156"
       define_method(:install) do
         bin.install "costgraph"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://setup.costgraph.ai/costgraph-cli/0.4.5/costgraph-cli_linux_arm64.tar.gz"
-      sha256 "46357034b136bde7160572e857697460e4c9bedba04ed5ae102d4b13de2f93fc"
+      url "https://setup.costgraph.ai/costgraph-cli/0.5.0/costgraph-cli_linux_arm64.tar.gz"
+      sha256 "9a71600123307a521b7cc8d3123ed31eb7b8bb01e64c43041778d2e2be5183e2"
       define_method(:install) do
         bin.install "costgraph"
       end
