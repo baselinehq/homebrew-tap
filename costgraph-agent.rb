@@ -5,69 +5,23 @@
 class CostgraphAgent < Formula
   desc "VM agent for Costgraph"
   homepage "https://costgraph.baselinehq.cloud/"
-  version "0.0.38"
+  version "1.8.0"
+  depends_on :macos
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v0.0.38/costgraph-agent_v0.0.38_darwin_amd64.tar.gz"
-      sha256 "1bf869f2e67aa99ba12cfc570702a7c2bac0eeb6b4cb380dd7e3229e2f618942"
+  if Hardware::CPU.intel?
+    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.8.0/costgraph-agent_darwin_amd64.tar.gz"
+    sha256 "d79b58d60b02d25913c3c979e94ccb98ae20d8a8eba8bd603d85e7403f6869a4"
 
-      def install
-        bin.install "costgraph-agent"
-        if OS.mac?
-          if Hardware::CPU.arm?
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
-          else
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_amd64.dylib" => "libdarwin_exporter.dylib"
-          end
-        end
-      end
-    end
-    if Hardware::CPU.arm?
-      url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v0.0.38/costgraph-agent_v0.0.38_darwin_arm64.tar.gz"
-      sha256 "e30769338afe5910864ba45d7e85f126fdf5f2030a8ddc4f7385d54a24e31e75"
-
-      def install
-        bin.install "costgraph-agent"
-        if OS.mac?
-          if Hardware::CPU.arm?
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
-          else
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_amd64.dylib" => "libdarwin_exporter.dylib"
-          end
-        end
-      end
+    define_method(:install) do
+      bin.install "costgraph-agent"
     end
   end
+  if Hardware::CPU.arm?
+    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.8.0/costgraph-agent_darwin_arm64.tar.gz"
+    sha256 "82c99e7a4474d771a7ebf5ae0b4505dd7cc6d8dd3a1f4576d40be0510f06159f"
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v0.0.38/costgraph-agent_v0.0.38_linux_amd64.tar.gz"
-      sha256 "71519f5c2f73aae90b1d3fcc78735a5f6041875eafe03e68c50dc0cd18bb5767"
-      def install
-        bin.install "costgraph-agent"
-        if OS.mac?
-          if Hardware::CPU.arm?
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
-          else
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_amd64.dylib" => "libdarwin_exporter.dylib"
-          end
-        end
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v0.0.38/costgraph-agent_v0.0.38_linux_arm64.tar.gz"
-      sha256 "1bb4cdb7e979186e7b238e4e19046bffe1bdb8b0c4c301dbc1b641e87854b9a7"
-      def install
-        bin.install "costgraph-agent"
-        if OS.mac?
-          if Hardware::CPU.arm?
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_arm64.dylib" => "libdarwin_exporter.dylib"
-          else
-            lib.install "internal/collectors/darwinexporter/libdarwin_exporter_amd64.dylib" => "libdarwin_exporter.dylib"
-          end
-        end
-      end
+    define_method(:install) do
+      bin.install "costgraph-agent"
     end
   end
 
@@ -80,6 +34,7 @@ class CostgraphAgent < Formula
         # Costgraph Agent configuration
         api_key: ""
       EOS
+      conf.chmod 0600
     end
   end
 
