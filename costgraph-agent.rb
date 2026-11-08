@@ -5,20 +5,20 @@
 class CostgraphAgent < Formula
   desc "VM agent for Costgraph"
   homepage "https://costgraph.baselinehq.cloud/"
-  version "1.9.4"
+  version "1.11.0"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.9.4/costgraph-agent_darwin_amd64.tar.gz"
-    sha256 "d81074c0c1b6945df40f362f6b5caa3575fe8e165f1c0ad8a25ea6dfa85c1dc2"
+    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.11.0/costgraph-agent_darwin_amd64.tar.gz"
+    sha256 "4affa1ef0b6b25b9aeb9dabacab632e413b216222ce3d504a201db3ffbe0f1f3"
 
     define_method(:install) do
       bin.install "costgraph-agent"
     end
   end
   if Hardware::CPU.arm?
-    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.9.4/costgraph-agent_darwin_arm64.tar.gz"
-    sha256 "34544f41b17f2a16fa368a14f8fddda7c8748955aceef21e1c832ebadaea862c"
+    url "https://costgraph-agent-releases.s3.us-east-1.amazonaws.com/v1.11.0/costgraph-agent_darwin_arm64.tar.gz"
+    sha256 "a7c3e70850cde5272a4cbec334a5375f5723938275afc7a8d1bbf919c4329626"
 
     define_method(:install) do
       bin.install "costgraph-agent"
